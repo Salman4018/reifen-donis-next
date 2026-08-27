@@ -98,7 +98,7 @@ permissions enabled by the repository settings.
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/<you>/<repo-name>.git
+   git remote add origin https://github.com/Salman4018/reifen-donis-next.git
    git push -u origin main
    ```
 2. On GitHub: **Settings → Pages → Build and deployment → Source** → select
