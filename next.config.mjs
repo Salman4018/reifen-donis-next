@@ -14,6 +14,9 @@ const nextConfig = {
   trailingSlash: true,     // /leistungen/ instead of /leistungen.html — plays nicer with static hosts
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
     unoptimized: true,     // no image-optimization server needed for a static export
   },

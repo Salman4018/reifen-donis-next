@@ -1,11 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
+import { localAsset } from '../lib/assets';
 
 export default function GalleryViewer({ title, images }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const selected = images[selectedIndex];
-  const imagePath = (file) => `/images/gallery/${file}`;
+  const imagePath = (file) => localAsset(`/images/gallery/${file}`);
 
   function move(step) {
     setSelectedIndex((index) => (index + step + images.length) % images.length);
@@ -17,7 +19,13 @@ export default function GalleryViewer({ title, images }) {
         <button type="button" className="gallery-arrow previous" aria-label="Vorheriges Bild" onClick={() => move(-1)}>
           ‹
         </button>
-        <img src={imagePath(selected)} alt={`${title}, Bild ${selectedIndex + 1} von ${images.length}`} />
+        <Image
+          src={imagePath(selected)}
+          alt={`${title}, Bild ${selectedIndex + 1} von ${images.length}`}
+          width={1200}
+          height={800}
+          sizes="(max-width: 760px) 100vw, 760px"
+        />
         <button type="button" className="gallery-arrow next" aria-label="Nächstes Bild" onClick={() => move(1)}>
           ›
         </button>
@@ -33,7 +41,7 @@ export default function GalleryViewer({ title, images }) {
             onClick={() => setSelectedIndex(index)}
             key={image}
           >
-            <img src={imagePath(image)} alt="" aria-hidden="true" />
+            <Image src={imagePath(image)} alt="" aria-hidden="true" width={150} height={150} sizes="12vw" />
           </button>
         ))}
       </div>
