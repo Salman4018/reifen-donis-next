@@ -24,6 +24,7 @@ describe('ContactForm', () => {
       'href',
       'mailto:info@reifen-donis.de'
     );
+    expect(screen.getByRole('link', { name: 'Datenschutzerklärung' })).toHaveAttribute('href', '/datenschutz/');
   });
 
   it('shows a placeholder alert on submit since no backend is wired up', async () => {

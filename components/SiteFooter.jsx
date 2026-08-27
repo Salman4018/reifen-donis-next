@@ -15,8 +15,11 @@ export default function SiteFooter() {
             <h4>Navigation</h4>
             <ul>
               <li><Link href="/">Startseite</Link></li>
-              <li><Link href="/leistungen/">Leistungen</Link></li>
-              <li><Link href="/ueber-uns/">Über uns</Link></li>
+              <li><Link href="/bilder/">Galerie</Link></li>
+              <li><Link href="/reifen/">Reifen</Link></li>
+              <li><Link href="/unsere-services-rund-um-auto-reifen/">Leistungen</Link></li>
+              <li><Link href="/firmenwagen/">Firmenwagen</Link></li>
+              <li><Link href="/über-uns/">Über uns</Link></li>
               <li><Link href="/kontakt/">Kontakt</Link></li>
             </ul>
           </div>
@@ -31,9 +34,9 @@ export default function SiteFooter() {
           <div>
             <h4>Rechtliches</h4>
             <ul>
-              <li><a href="#">Impressum</a></li>
-              <li><a href="#">Datenschutz</a></li>
-              <li><a href="#">Barrierefreiheit</a></li>
+              <li><Link href="/impressum/">Impressum</Link></li>
+              <li><Link href="/datenschutz/">Datenschutz</Link></li>
+              <li><Link href="/barrierefreiheit/">Barrierefreiheit</Link></li>
             </ul>
           </div>
         </div>

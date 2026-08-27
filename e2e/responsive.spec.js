@@ -23,15 +23,16 @@ test.describe('Mobile responsiveness', () => {
 
   test('hamburger menu opens and closes the navigation', async ({ page }) => {
     await page.goto('/');
-    const toggle = page.getByRole('button', { name: /men\u00fc \u00f6ffnen/i });
+    const toggle = page.locator('.nav-toggle');
     const nav = page.getByRole('navigation', { name: 'Hauptnavigation' });
 
     await expect(toggle).toHaveAttribute('aria-expanded', 'false');
     await toggle.click();
     await expect(toggle).toHaveAttribute('aria-expanded', 'true');
-    await expect(nav.getByRole('link', { name: 'Kontakt' })).toBeVisible();
+    await expect(toggle).toHaveAccessibleName('Menü schließen');
+    await expect(nav.getByRole('link', { name: 'Galerie' })).toBeVisible();
 
-    await toggle.click();
+    await page.getByRole('button', { name: /menü schließen/i }).click();
     await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 
