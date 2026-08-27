@@ -39,7 +39,6 @@ export default function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 Reifen Donis, Solingen</span>
-          <span>Neu gestaltete Website — responsive für Smartphone, Tablet &amp; Desktop</span>
         </div>
       </div>
     </footer>
