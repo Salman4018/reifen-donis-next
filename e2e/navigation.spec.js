@@ -110,4 +110,11 @@ test.describe('Site navigation', () => {
     await page.goto('/bilder/');
     await expect(page.locator('img').first()).toHaveAttribute('src', /\/images\/gallery\//);
   });
+
+  test('gallery pagination shows different collections', async ({ page }) => {
+    await page.goto('/bilder/?page=3');
+    await expect(page.getByRole('heading', { name: "Opel Kapitän '39 4-Türer (Bj.1939)" })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Lamborghini Diabolo SE 30 (1993-1995) Spezial Edition 150 Stück' })).not.toBeVisible();
+    await expect(page.getByRole('link', { name: '4', exact: true })).toHaveAttribute('aria-current', 'page');
+  });
 });
