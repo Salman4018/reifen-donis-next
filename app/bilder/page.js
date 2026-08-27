@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { GALLERY_COLLECTIONS } from '../../data/gallery';
+import { localAsset } from '../../lib/assets';
 
 export const metadata = {
   title: 'Bilder',
@@ -23,7 +24,7 @@ export default function BilderPage() {
         <div className="gallery-grid">
           {collections.map((collection) => (
             <Link className="gallery-card" href={`/bilder/${collection.slug}/`} key={collection.slug}>
-              <img src={collection.cover} alt={collection.title} loading="lazy" />
+              <img src={localAsset(collection.cover)} alt={collection.title} loading="lazy" />
               <span className="code">{collection.imageCount} BILDER</span>
               <h2>{collection.title}</h2>
             </Link>

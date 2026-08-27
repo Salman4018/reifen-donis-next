@@ -51,6 +51,7 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: ${{ steps.basepath.outputs.value }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.basepath.outputs.value }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

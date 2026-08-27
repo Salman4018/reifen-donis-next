@@ -105,4 +105,9 @@ test.describe('Site navigation', () => {
     await gallery.getByRole('button', { name: 'Lieferwagen anzeigen' }).click();
     await expect(gallery.getByRole('img', { name: 'Lieferwagen eines Flottenkunden' })).toBeVisible();
   });
+
+  test('gallery images use local asset paths', async ({ page }) => {
+    await page.goto('/bilder/');
+    await expect(page.locator('img').first()).toHaveAttribute('src', /\/images\/gallery\//);
+  });
 });
