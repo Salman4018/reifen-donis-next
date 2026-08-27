@@ -8,3 +8,4 @@ npm-debug.log*
 /blob-report/
 /playwright/.cache/
 /coverage/
+CLONE_PROGRESS.md

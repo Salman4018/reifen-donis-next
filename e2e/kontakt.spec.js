@@ -43,4 +43,10 @@ test.describe('Kontakt page', () => {
     await expect(page.getByRole('heading', { name: 'Öffnungszeiten' })).toBeVisible();
     await expect(page.getByRole('cell', { name: 'Mo – Fr' })).toBeVisible();
   });
+
+  test('privacy link opens the privacy page', async ({ page }) => {
+    await page.getByRole('link', { name: 'Datenschutzerklärung' }).click();
+    await expect(page).toHaveURL(/\/datenschutz\/?$/);
+    await expect(page.getByRole('heading', { name: 'Datenschutz' })).toBeVisible();
+  });
 });

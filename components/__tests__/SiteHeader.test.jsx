@@ -12,16 +12,19 @@ describe('SiteHeader', () => {
     render(<SiteHeader />);
 
     expect(screen.getByText('REIFEN DONIS')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /startseite/i })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: 'Leistungen' })).toHaveAttribute('href', '/leistungen');
-    expect(screen.getByRole('link', { name: 'Reifen' })).toHaveAttribute('href', '/leistungen#reifen');
-    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/ueber-uns');
-    expect(screen.getByRole('link', { name: 'Kontakt' })).toHaveAttribute('href', '/kontakt');
+    expect(screen.getByRole('link', { name: 'Galerie' })).toHaveAttribute('href', '/bilder');
+    expect(screen.getByRole('link', { name: 'Reifen' })).toHaveAttribute('href', '/reifen');
+    expect(screen.getByRole('link', { name: 'Leistungen' })).toHaveAttribute(
+      'href',
+      '/unsere-services-rund-um-auto-reifen'
+    );
+    expect(screen.getByRole('link', { name: 'Firmenwagen' })).toHaveAttribute('href', '/firmenwagen');
+    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/über-uns');
   });
 
   it('marks the current page link with aria-current', () => {
     render(<SiteHeader />);
-    expect(screen.getByRole('link', { name: /startseite/i })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: /REIFEN DONIS/i })).toHaveAttribute('aria-current', 'page');
   });
 
   it('renders the phone contact link', () => {
@@ -38,8 +41,9 @@ describe('SiteHeader', () => {
 
     await user.click(toggle);
     expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(toggle).toHaveAccessibleName('Menü schließen');
 
-    await user.click(toggle);
+    await user.click(screen.getByRole('button', { name: /menü schließen/i }));
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 
@@ -51,7 +55,7 @@ describe('SiteHeader', () => {
     await user.click(toggle);
     expect(toggle).toHaveAttribute('aria-expanded', 'true');
 
-    await user.click(screen.getByRole('link', { name: 'Kontakt' }));
+    await user.click(screen.getByRole('link', { name: 'Galerie' }));
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 });

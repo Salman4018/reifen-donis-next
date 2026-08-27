@@ -37,7 +37,7 @@ export default function ContactForm() {
       <div className="field checkbox-field">
         <input type="checkbox" id="datenschutz" name="datenschutz" required />
         <label htmlFor="datenschutz">
-          Ich akzeptiere die <a href="#">Datenschutzerklärung</a>. Bei der Verarbeitung Ihrer Anfrage werden
+          Ich akzeptiere die <a href="/datenschutz/">Datenschutzerklärung</a>. Bei der Verarbeitung Ihrer Anfrage werden
           Daten bei uns gespeichert.
         </label>
       </div>

@@ -7,8 +7,9 @@ describe('SiteFooter', () => {
     render(<SiteFooter />);
 
     expect(screen.getByRole('link', { name: 'Startseite' })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: 'Leistungen' })).toHaveAttribute('href', '/leistungen');
-    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/ueber-uns');
+    expect(screen.getByRole('link', { name: 'Galerie' })).toHaveAttribute('href', '/bilder');
+    expect(screen.getByRole('link', { name: 'Leistungen' })).toHaveAttribute('href', '/unsere-services-rund-um-auto-reifen');
+    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/über-uns');
     expect(screen.getByRole('link', { name: 'Kontakt' })).toHaveAttribute('href', '/kontakt');
   });
 
@@ -21,6 +22,17 @@ describe('SiteFooter', () => {
       'mailto:info@reifen-donis.de'
     );
     expect(screen.getByText(/Merscheider Straße 326, 42699 Solingen/)).toBeInTheDocument();
+  });
+
+  it('renders working legal links', () => {
+    render(<SiteFooter />);
+
+    expect(screen.getByRole('link', { name: 'Impressum' })).toHaveAttribute('href', '/impressum');
+    expect(screen.getByRole('link', { name: 'Datenschutz' })).toHaveAttribute('href', '/datenschutz');
+    expect(screen.getByRole('link', { name: 'Barrierefreiheit' })).toHaveAttribute(
+      'href',
+      '/barrierefreiheit'
+    );
   });
 
   it('renders the copyright notice', () => {

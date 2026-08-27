@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const NAV_LINKS = [
-  { href: '/', label: 'Startseite' },
-  { href: '/leistungen/', label: 'Leistungen' },
-  { href: '/leistungen/#reifen', label: 'Reifen' },
-  { href: '/ueber-uns/', label: 'Über uns' },
-  { href: '/kontakt/', label: 'Kontakt' },
+  { href: '/bilder/', label: 'Galerie' },
+  { href: '/reifen/', label: 'Reifen' },
+  { href: '/unsere-services-rund-um-auto-reifen/', label: 'Leistungen' },
+  { href: '/firmenwagen/', label: 'Firmenwagen' },
+  { href: '/über-uns/', label: 'Über uns' },
 ];
 
 export default function SiteHeader() {
@@ -19,14 +19,14 @@ export default function SiteHeader() {
   return (
     <header className="site-header">
       <div className="header-bar wrap">
-        <Link href="/" className="logo" onClick={() => setOpen(false)}>
+        <Link href="/" className="logo" aria-current={pathname === '/' ? 'page' : undefined} onClick={() => setOpen(false)}>
           REIFEN DONIS
           <span>KFZ-WERKSTATT · SOLINGEN</span>
         </Link>
 
         <nav className={`main-nav${open ? ' open' : ''}`} id="main-nav" aria-label="Hauptnavigation">
           {NAV_LINKS.map((link) => {
-            const isCurrent = link.href !== '/' ? pathname?.startsWith(link.href.split('#')[0]) : pathname === '/';
+            const isCurrent = pathname?.startsWith(link.href.replace(/\/$/, ''));
             return (
               <Link
                 key={link.href}
@@ -47,7 +47,7 @@ export default function SiteHeader() {
           </a>
           <button
             className="nav-toggle"
-            aria-label="Menü öffnen"
+            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
             aria-expanded={open}
             aria-controls="main-nav"
             onClick={() => setOpen((v) => !v)}
