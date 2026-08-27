@@ -106,7 +106,7 @@ permissions enabled by the repository settings.
    folder, the workflow handles that.) You can also do this from the CLI
    instead of clicking through the UI:
    ```bash
-   gh api -X POST repos/<you>/<repo-name>/pages -f "build_type=workflow"
+   gh api -X POST repos/Salman4018/reifen-donis-next/pages -f "build_type=workflow"
    ```
 3. Push again (or re-run the workflow from the **Actions** tab). The site
    will be live at `https://<you>.github.io/<repo-name>/` a minute or two
