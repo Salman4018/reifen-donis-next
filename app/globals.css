@@ -270,6 +270,44 @@ section{padding:76px 0;}
 }
 .service-card .code{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--rust);display:block;margin-bottom:.5em;}
 .service-card h4{font-size:1rem;margin:0;}
+.service-card h3{font-size:1rem;margin:0;color:var(--ink);}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px;}
+.gallery-card{display:block;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--paper);padding:12px;transition:transform .2s ease,box-shadow .2s ease;}
+.gallery-card:hover,.gallery-card:focus-visible{transform:translateY(-3px);box-shadow:0 10px 24px rgba(21,30,36,.12);}
+.gallery-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--dim);margin-bottom:14px;}
+.gallery-card h2{font-size:1rem;line-height:1.2;margin:.4em 0 0;}
+.gallery-pagination{display:flex;gap:8px;margin-top:36px;}
+.gallery-pagination a{display:grid;place-items:center;min-width:40px;height:40px;border:1px solid var(--line);color:var(--ink);text-decoration:none;}
+.gallery-pagination a[aria-current="page"]{background:var(--ink);color:var(--paper);}
+.gallery-detail{max-width:900px;}
+.back-link{display:inline-block;margin-bottom:28px;color:var(--rust);}
+.gallery-detail-placeholder{margin-top:28px;max-width:700px;padding:16px;border:1px solid var(--line);background:var(--dim);}
+.gallery-detail-placeholder img{display:block;width:100%;max-height:520px;object-fit:contain;background:var(--paper);}
+.gallery-detail-placeholder p{margin:16px 0 0;color:var(--steel);}
+.vehicle-gallery{margin-top:28px;max-width:760px;}
+.vehicle-gallery-main{position:relative;border:1px solid var(--steel-light);background:var(--dim);padding:16px;}
+.vehicle-gallery-main>img{width:100%;height:min(560px,65vw);min-height:280px;object-fit:contain;background:var(--paper);}
+.gallery-arrow{position:absolute;top:50%;z-index:1;transform:translateY(-50%);width:44px;height:54px;border:0;background:rgba(21,30,36,.84);color:var(--paper);font-size:2.3rem;line-height:1;cursor:pointer;}
+.gallery-arrow:hover,.gallery-arrow:focus-visible{background:var(--rust);}
+.gallery-arrow.previous{left:22px;}
+.gallery-arrow.next{right:22px;}
+.gallery-counter{position:absolute;right:24px;bottom:24px;padding:5px 9px;background:rgba(21,30,36,.84);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:.75rem;}
+.vehicle-gallery-thumbs{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:10px;}
+.vehicle-gallery-thumbs button{border:2px solid transparent;background:var(--paper);padding:3px;cursor:pointer;}
+.vehicle-gallery-thumbs button:hover,.vehicle-gallery-thumbs button:focus-visible,.vehicle-gallery-thumbs button.active{border-color:var(--rust);}
+.vehicle-gallery-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;}
+.legal-content{max-width:850px;}
+.legal-content h2{margin:2em 0 .5em;font-size:1.35rem;}
+.legal-content p,.legal-content li{max-width:70ch;line-height:1.7;}
+.legal-content ul{padding-left:1.4rem;}
+.fleet-gallery{min-width:0;}
+.fleet-gallery-main{border:1px solid var(--steel-light);background:var(--paper);padding:14px;}
+.fleet-gallery-main img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.fleet-gallery-main p{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--rust);margin:.8em 0 0;text-transform:uppercase;letter-spacing:.06em;}
+.fleet-gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;}
+.fleet-gallery-thumbs button{border:2px solid transparent;background:var(--paper);padding:4px;cursor:pointer;}
+.fleet-gallery-thumbs button:hover,.fleet-gallery-thumbs button:focus-visible,.fleet-gallery-thumbs button.active{border-color:var(--rust);}
+.fleet-gallery-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;}
 @media (max-width:900px){.service-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:520px){.service-grid{grid-template-columns:1fr;}}
 
@@ -355,6 +393,10 @@ form.workshop-form{display:flex;flex-direction:column;gap:18px;}
 .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px;}
 @media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
 @media (max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+@media (max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:520px){.gallery-grid{grid-template-columns:1fr;}}
+@media (max-width:520px){.fleet-gallery-thumbs{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:600px){.vehicle-gallery-thumbs{grid-template-columns:repeat(4,1fr);}.gallery-arrow{width:38px;height:46px;}.gallery-arrow.previous{left:20px;}.gallery-arrow.next{right:20px;}}
 .site-footer h4{color:var(--paper);font-size:.95rem;margin-bottom:1em;}
 .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6em;}
 .site-footer a{color:var(--steel-light);text-decoration:none;font-size:.92rem;}

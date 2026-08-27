@@ -1,18 +1,10 @@
 import Link from 'next/link';
+import { TIRE_CATEGORIES } from '../../data/tires';
 
 export const metadata = {
   title: 'Reifen & Räder',
   description: 'Reifen, Räder und Reifenservice von Reifen Donis in Solingen.',
 };
-
-const CATEGORIES = [
-  ['Sommerreifen', 'Für optimale Performance und Sicherheit in der warmen Jahreszeit.'],
-  ['Winterreifen', 'Sicher unterwegs bei winterlichen Bedingungen.'],
-  ['Ganzjahresreifen', 'Ein Reifensatz für unterschiedliche Witterungsverhältnisse.'],
-  ['RDKS', 'Service für Reifendruckkontrollsysteme.'],
-  ['EU-Reifenlabel', 'Informationen zu den Kennwerten neuer Reifen.'],
-  ['Offroad', 'Reifen für SUVs und anspruchsvolles Gelände.'],
-];
 
 export default function ReifenPage() {
   return (
@@ -39,13 +31,12 @@ export default function ReifenPage() {
             </p>
           </div>
           <div className="service-grid">
-            {CATEGORIES.map(([title, text]) => {
-              const slug = title.toLowerCase().replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue').replace(' ', '-');
+            {TIRE_CATEGORIES.map(({ slug, title, intro }) => {
               return (
                 <Link className="service-card" href={`/reifen/${slug}/`} key={title}>
                   <span className="code">REIFEN</span>
                   <h3>{title}</h3>
-                  <p style={{ margin: '.6em 0 0', fontSize: '.9rem', color: 'var(--steel)' }}>{text}</p>
+                  <p style={{ margin: '.6em 0 0', fontSize: '.9rem', color: 'var(--steel)' }}>{intro}</p>
                 </Link>
               );
             })}
