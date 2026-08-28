@@ -105,13 +105,10 @@ permission for repository contents.
    git push -u origin main
    ```
 2. On GitHub: **Settings → Pages → Build and deployment → Source** → select
-   **GitHub Actions**. (You only do this once — no need to pick a branch or
-   folder, the workflow handles that.) You can also do this from the CLI
-   instead of clicking through the UI:
-   ```bash
-   gh api -X POST repos/Salman4018/reifen-donis-next/pages -f "build_type=workflow"
-   ```
- 3. Push again (or re-run the workflow from the **Actions** tab). The site
+   **Deploy from a branch**, then choose the `gh-pages` branch and `/(root)`
+   folder. This workflow publishes the main site and feature previews directly
+   to that branch.
+3. Push again (or re-run the workflow from the **Actions** tab). The site
    will be live at `https://<you>.github.io/<repo-name>/` a minute or two
    later.
 

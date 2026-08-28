@@ -109,6 +109,17 @@ test.describe('Site navigation', () => {
     await expect(page.getByText('Keine kleinteiligen Einzelverträge')).toBeVisible();
   });
 
+  test('reviews page shows source-linked rating and count', async ({ page }) => {
+    await page.goto('/ihre-meinungen/');
+    await expect(page.getByRole('heading', { name: 'Ihre Meinungen' })).toBeVisible();
+    await expect(page.getByText('4.7', { exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: '90 Berichte' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Bewertungen bei Google ansehen' })).toHaveAttribute(
+      'href',
+      /^https:\/\/www\.google\.com\/search\?/
+    );
+  });
+
   test('gallery images use local asset paths', async ({ page }) => {
     await page.goto('/bilder/');
     await expect(page.locator('img').first()).toHaveAttribute('src', /\/images\/gallery\//);
@@ -117,13 +128,13 @@ test.describe('Site navigation', () => {
   test('gallery pagination shows different collections', async ({ page }) => {
     await page.goto('/bilder/');
     await page.getByRole('link', { name: '2', exact: true }).click();
-    await expect(page).toHaveURL(/\/bilder\/\?page=1$/);
-
-    await page.getByRole('link', { name: '3', exact: true }).click();
     await expect(page).toHaveURL(/\/bilder\/\?page=2$/);
 
-    await page.getByRole('link', { name: '4', exact: true }).click();
+    await page.getByRole('link', { name: '3', exact: true }).click();
     await expect(page).toHaveURL(/\/bilder\/\?page=3$/);
+
+    await page.getByRole('link', { name: '4', exact: true }).click();
+    await expect(page).toHaveURL(/\/bilder\/\?page=4$/);
     await expect(page.getByRole('heading', { name: "Opel Kapitän '39 4-Türer (Bj.1939)" })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Lamborghini Diabolo SE 30 (1993-1995) Spezial Edition 150 Stück' })).not.toBeVisible();
     await expect(page.getByRole('link', { name: '4', exact: true })).toHaveAttribute('aria-current', 'page');

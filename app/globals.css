@@ -357,6 +357,16 @@ section{padding:76px 0;}
 .info-card .dot{width:8px;height:8px;background:var(--rust);border-radius:50%;display:inline-block;}
 .info-card p, .info-card address{margin:0;font-style:normal;color:var(--ink);opacity:.85;}
 .info-card .mono-line{font-family:'IBM Plex Mono',monospace;font-size:.9rem;display:block;margin:.15em 0;}
+.reviews-summary{display:grid;grid-template-columns:minmax(240px,.7fr) 1.3fr;gap:56px;align-items:center;}
+.review-score{border:1px solid var(--steel-light);background:var(--paper);padding:36px;text-align:center;}
+.review-score-value{font-size:clamp(4rem,8vw,6rem);font-weight:700;line-height:.9;color:var(--rust);}
+.review-score-scale{font-family:'IBM Plex Mono',monospace;color:var(--steel);font-size:1.1rem;}
+.review-stars{color:var(--amber);font-size:1.5rem;letter-spacing:.12em;margin-top:20px;}
+.review-score p{margin:10px 0 0;font-family:'IBM Plex Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;}
+.review-copy h2{margin-top:0;}
+.review-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+.review-source{color:var(--steel);font-size:.8rem;margin-top:22px;}
+@media (max-width:700px){.reviews-summary{grid-template-columns:1fr;gap:30px;}.review-score{padding:28px;}}
 
 /* CTA band */
 .cta-band{

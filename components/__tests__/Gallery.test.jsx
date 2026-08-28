@@ -33,7 +33,7 @@ describe('Gallery pages', () => {
       'src',
       '/images/gallery/P1040959.JPG'
     );
-    expect(screen.getByRole('link', { name: '2' })).toHaveAttribute('href', '/bilder/?page=1');
+    expect(screen.getByRole('link', { name: '2' })).toHaveAttribute('href', '/bilder/?page=2');
   });
 
   it('renders a gallery detail page and its return link', async () => {
@@ -59,7 +59,7 @@ describe('Gallery pages', () => {
 
     jest.spyOn(require('next/navigation'), 'useSearchParams').mockReturnValue(new URLSearchParams('page=3'));
     rerender(<GalleryIndex collections={collections} />);
-    expect(screen.getByRole('heading', { name: 'Fahrzeug 60' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Fahrzeug 40' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Fahrzeug 0' })).not.toBeInTheDocument();
   });
 });

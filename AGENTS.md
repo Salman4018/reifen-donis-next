@@ -26,3 +26,7 @@
 
 - The contact form intentionally only shows a browser alert; do not describe it as a working submission backend until `components/ContactForm.jsx` is wired to a service or endpoint.
 - Footer legal links are placeholders (`#`) for Impressum, Datenschutz, and Barrierefreiheit; legal pages are not implemented.
+- Customer review ratings, counts, and excerpts must use Google as the source;
+  do not reference `https://reifen-donis.de/` as the review source. Keep the
+  Google source URL and verification date in `data/reviews.js`. If Google
+  review text is added, it must be verified and attributed to Google.
