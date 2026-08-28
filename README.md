@@ -62,11 +62,12 @@ line from `next.config.mjs` and use `npm run build && npm run start` instead.
 ## Deploy to GitHub Pages
 
 This repo ships with `.github/workflows/deploy.yml`, which builds the site and
-publishes it to GitHub Pages automatically on every push to `main`.
+publishes it to GitHub Pages automatically on pushes to `main` and feature
+branches.
 
 ### Deploy via the pipeline
 
-1. Push a commit to the `main` branch, or start `Deploy to GitHub Pages` manually
+1. Push a commit to `main` or a feature branch, or start `Deploy GitHub Pages previews` manually
    from the repository's **Actions** tab using **Run workflow**.
 2. The pipeline runs on Ubuntu with Node 20 and installs the locked dependencies
    with `npm ci`.
@@ -75,13 +76,15 @@ publishes it to GitHub Pages automatically on every push to `main`.
    browsers before running the E2E suite.
 4. The pipeline calculates the GitHub Pages `BASE_PATH` from the repository
    name and runs `npm run build`, producing the static site in `out/`.
-5. The `out/` artifact is uploaded and deployed to the `github-pages`
-   environment. The resulting URL is shown in the completed workflow run.
+5. The `out/` artifact is published into the `gh-pages` branch. The `main`
+   branch is published at the normal project URL; feature branches are
+   published below `/previews/<branch-slug>/`.
 
 Before the first deployment, configure **Settings → Pages → Build and
-deployment → Source** as **GitHub Actions**. The workflow requires the default
-branch to be named `main` and requires the Pages deployment environment and
-permissions enabled by the repository settings.
+deployment → Source** as **Deploy from a branch**, select `gh-pages`, and select
+`/(root)`. The workflow writes the main site and feature previews into that
+branch. The default branch should be named `main`, and Actions must have write
+permission for repository contents.
 
 **One-time setup:**
 
@@ -108,7 +111,7 @@ permissions enabled by the repository settings.
    ```bash
    gh api -X POST repos/Salman4018/reifen-donis-next/pages -f "build_type=workflow"
    ```
-3. Push again (or re-run the workflow from the **Actions** tab). The site
+ 3. Push again (or re-run the workflow from the **Actions** tab). The site
    will be live at `https://<you>.github.io/<repo-name>/` a minute or two
    later.
 
@@ -121,6 +124,21 @@ hardcode your repo name anywhere. (The one exception: if your repo is
 literally named `<you>.github.io` — a user/org root site — GitHub serves
 it at the domain root with no prefix, and the workflow detects that case
 too.)
+
+### Feature branch preview URLs
+
+Feature branches are published without replacing the main site. Slashes and
+unsupported characters in a branch name are converted to hyphens and lower
+case. For example:
+
+```text
+feature/fleet-services
+https://<you>.github.io/<repo-name>/previews/feature-fleet-services/
+```
+
+The workflow stores these previews in the `gh-pages` branch. Configure Pages to
+serve the `gh-pages` branch once; after that, pushes to `main` and feature
+branches deploy automatically.
 
 **Custom domain:** if you point a custom domain (e.g. `reifen-donis.de`) at
 the Pages site instead of using the `github.io` URL, set `BASE_PATH` to an

@@ -1,16 +1,16 @@
-name: Deploy to GitHub Pages
+name: Deploy GitHub Pages previews
 
 on:
   push:
-    branches: [main]
+    branches:
+      - '**'
+      - '!gh-pages'
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
-# Only one deployment at a time; cancel in-progress runs on a new push.
+# The gh-pages branch is shared by all previews, so serialize deployments.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      destination_dir: ${{ steps.basepath.outputs.directory }}
+      url_path: ${{ steps.basepath.outputs.url_path }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -38,14 +41,27 @@ jobs:
         id: basepath
         run: |
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          # A user/org root site (e.g. yourname.github.io) is served at
-          # the domain root, so it needs no base path. A normal project
-          # repo is served at /repo-name/, so it does.
-          if [[ "$REPO_NAME" == *.github.io ]]; then
-            echo "value=" >> "$GITHUB_OUTPUT"
+          BRANCH_SLUG="${GITHUB_REF_NAME//\//-}"
+          BRANCH_SLUG="$(printf '%s' "$BRANCH_SLUG" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g; s/--*/-/g; s/^-//; s/-$//')"
+
+          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            if [[ "$REPO_NAME" == *.github.io ]]; then
+              SITE_PATH=""
+            else
+              SITE_PATH="/$REPO_NAME"
+            fi
           else
-            echo "value=/$REPO_NAME" >> "$GITHUB_OUTPUT"
+            SITE_PATH="/$REPO_NAME/previews/$BRANCH_SLUG"
           fi
+
+          echo "value=$SITE_PATH" >> "$GITHUB_OUTPUT"
+          echo "directory=$([[ "$GITHUB_REF_NAME" == "main" ]] && printf '' || printf 'previews/%s' "$BRANCH_SLUG")" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_REF_NAME" == "main" && "$REPO_NAME" == *.github.io ]]; then
+            URL_PATH="/"
+          else
+            URL_PATH="/$REPO_NAME${SITE_PATH#/$REPO_NAME}/"
+          fi
+          echo "url_path=$URL_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Build static export
         run: npm run build
@@ -54,8 +70,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.basepath.outputs.value }}
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
+          name: site
           path: ./out
 
   unit-tests:
@@ -102,10 +119,21 @@ jobs:
   deploy:
     needs: [build, unit-tests, e2e-tests]
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Download static site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: ./out
+
+      - name: Publish branch preview
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./out
+          destination_dir: ${{ needs.build.outputs.destination_dir }}
+          keep_files: true
+
+      - name: Report preview URL
+        run: echo "Published at https://${GITHUB_REPOSITORY_OWNER}.github.io${{ needs.build.outputs.url_path }}"
