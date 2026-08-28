@@ -11,8 +11,8 @@ const PAGE_COUNT = 4;
 export default function GalleryIndex({ collections }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const queryPage = Number(searchParams.get('page') || 0);
-  const page = Number.isInteger(queryPage) && queryPage >= 0 && queryPage < PAGE_COUNT ? queryPage : 0;
+  const queryPage = Number(searchParams.get('page') || 1);
+  const page = Number.isInteger(queryPage) && queryPage >= 1 && queryPage <= PAGE_COUNT ? queryPage - 1 : 0;
   const visibleCollections = collections.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
   return (
@@ -40,7 +40,7 @@ export default function GalleryIndex({ collections }) {
         </div>
         <nav className="gallery-pagination" aria-label="Galerieseiten">
           {Array.from({ length: PAGE_COUNT }, (_, index) => (
-            <Link href={`${pathname}${index ? `?page=${index}` : ''}`} aria-current={index === page ? 'page' : undefined} key={index}>
+            <Link href={`${pathname}${index ? `?page=${index + 1}` : ''}`} aria-current={index === page ? 'page' : undefined} key={index}>
               {index + 1}
             </Link>
           ))}
