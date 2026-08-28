@@ -576,10 +576,11 @@ form.workshop-form{display:flex;flex-direction:column;gap:18px;}
 .cta-band::before{animation:drift-glow 16s ease-in-out infinite;}
 
 @keyframes pulse-ring{
-  0%{box-shadow:0 0 0 0 rgba(255,66,0,.35);}
-  100%{box-shadow:0 0 0 14px rgba(255,66,0,0);}
+  0%{box-shadow:0 0 0 0 rgba(255,66,0,.55);transform:scale(1);}
+  70%{box-shadow:0 0 0 22px rgba(255,66,0,0);transform:scale(1.04);}
+  100%{box-shadow:0 0 0 0 rgba(255,66,0,0);transform:scale(1);}
 }
-.badge-wheel .center-year::before{animation:pulse-ring 2.6s var(--ease) infinite;}
+.badge-wheel .center-year::before{animation:pulse-ring 1.8s ease-out infinite;}
 
 /* ============================================================
    IMAGE HOVER ZOOM (cards with photos)
