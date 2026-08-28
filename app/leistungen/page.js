@@ -16,12 +16,12 @@ export const metadata = {
 };
 
 const TIRE_TYPES = [
-  ['REIFEN', 'Sommerreifen'],
-  ['REIFEN', 'Winterreifen'],
-  ['REIFEN', 'Ganzjahresreifen'],
-  ['REIFEN', 'Offroad-Reifen'],
-  ['SICHERHEIT', 'RDKS'],
-  ['INFO', 'EU-Reifenlabel'],
+  ['REIFEN', 'Sommerreifen', 'SUMMER'],
+  ['REIFEN', 'Winterreifen', 'WINTER'],
+  ['REIFEN', 'Ganzjahresreifen', 'ALL_SEASON'],
+  ['REIFEN', 'Offroad-Reifen', 'OFFROAD'],
+  ['SICHERHEIT', 'RDKS', 'TPMS'],
+  ['INFO', 'EU-Reifenlabel', 'LABEL'],
 ];
 
 export default function LeistungenPage() {
@@ -54,12 +54,12 @@ export default function LeistungenPage() {
             </p>
           </div>
           <div className="service-grid">
-            {TIRE_TYPES.map(([code, title]) => (
+            {TIRE_TYPES.map(([code, title, icon]) => (
               <div className="service-card" key={title}>
                 <span className="code">{code}</span>
                 <div className="service-card-title">
                   <h4>{title}</h4>
-                  <ServiceIcon category={code} />
+                  <ServiceIcon category={title} icon={icon} />
                 </div>
               </div>
             ))}

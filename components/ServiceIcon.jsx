@@ -1,4 +1,45 @@
 const ICON_PATHS = {
+  SUMMER: (
+    <>
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" />
+    </>
+  ),
+  WINTER: (
+    <>
+      <path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1" />
+      <path d="m12 2-1.5 2M12 2l1.5 2M12 22l-1.5-2M12 22l1.5-2M2 12l2 1.5M2 12l2-1.5M22 12l-2 1.5M22 12l-2-1.5" />
+    </>
+  ),
+  ALL_SEASON: (
+    <>
+      <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 3 10.5 5M12 3l1.5 2M21 12l-2-1.5M21 12l-2 1.5" />
+    </>
+  ),
+  OFFROAD: (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="m6 6 3 3M18 6l-3 3M6 18l3-3M18 18l-3-3" />
+      <path d="M4 9 2.5 7.5M20 9l1.5-1.5M4 15l-1.5 1.5M20 15l1.5 1.5" />
+    </>
+  ),
+  TPMS: (
+    <>
+      <path d="M5 17a7 7 0 1 1 14 0" />
+      <path d="M12 17V9M9 20h6M5 17H3M21 17h-2" />
+      <circle cx="12" cy="17" r="1" />
+    </>
+  ),
+  LABEL: (
+    <>
+      <path d="M4 5h10l6 6-8 8-8-8V5Z" />
+      <circle cx="9" cy="9" r="1.3" />
+      <path d="M12 12h5M12 15h3" />
+    </>
+  ),
   FAHRWERK: (
     <>
       <path d="M6 5v14M18 5v14M3 8h6M15 8h6M3 16h6M15 16h6" />
@@ -96,11 +137,11 @@ const ICON_PATHS = {
   ),
 };
 
-export default function ServiceIcon({ category }) {
+export default function ServiceIcon({ category, icon = category }) {
   return (
     <span className="service-icon" role="img" aria-label={`${category} Symbol`}>
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        {ICON_PATHS[category] || ICON_PATHS.INFO}
+        {ICON_PATHS[icon] || ICON_PATHS.INFO}
       </svg>
     </span>
   );
