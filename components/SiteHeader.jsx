@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: '/reifen/', label: 'Reifen' },
   { href: '/unsere-services-rund-um-auto-reifen/', label: 'Leistungen' },
   { href: '/firmenwagen/', label: 'Firmenwagen' },
-  { href: '/über-uns/', label: 'Über uns' },
+  { href: '/ueber-uns/', label: 'Über uns' },
 ];
 
 export default function SiteHeader() {

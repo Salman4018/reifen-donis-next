@@ -19,7 +19,7 @@ describe('SiteHeader', () => {
       '/unsere-services-rund-um-auto-reifen'
     );
     expect(screen.getByRole('link', { name: 'Firmenwagen' })).toHaveAttribute('href', '/firmenwagen');
-    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/über-uns');
+    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/ueber-uns');
   });
 
   it('marks the current page link with aria-current', () => {

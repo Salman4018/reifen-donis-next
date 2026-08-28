@@ -5,7 +5,7 @@
 - This is a single-package Next.js 16 App Router site using React 19; routes live under `app/` and shared UI lives under `components/`.
 - `app/layout.js` owns global metadata, the shared header/footer shell, and the global stylesheet import.
 - `components/SiteHeader.jsx` and `components/ContactForm.jsx` are client components; pages and the other shared components are server components.
-- Internal routes use trailing slashes (`/leistungen/`, `/ueber-uns/`, `/kontakt/`) because `next.config.mjs` sets `trailingSlash: true`.
+- Internal routes use trailing slashes (`/leistungen/`, `/ueber-uns/`, `/kontakt/`) because `next.config.mjs` sets `trailingSlash: true`. Use ASCII route names for deployment-safe internal links.
 
 ## Commands
 

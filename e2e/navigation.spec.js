@@ -27,7 +27,7 @@ test.describe('Site navigation', () => {
     await page.goto('/');
     await openMobileMenuIfNeeded();
     await nav.getByRole('link', { name: 'Über uns' }).click();
-    await expect(page).toHaveURL(/\/%C3%BCber-uns\/?$/);
+     await expect(page).toHaveURL(/\/ueber-uns\/?$/);
 
     await page.goto('/');
     await openMobileMenuIfNeeded();
