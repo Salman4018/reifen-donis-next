@@ -24,7 +24,15 @@ export default function GalleryIndex({ collections }) {
         <div className="gallery-grid">
           {visibleCollections.map((collection) => (
             <Link className="gallery-card" href={`/bilder/${collection.slug}/`} key={collection.slug}>
-              <Image src={localAsset(collection.cover)} alt={collection.title} width={1200} height={900} sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 25vw" loading="lazy" />
+              <div className="gallery-card-media">
+                <Image
+                  src={localAsset(collection.cover)}
+                  alt={collection.title}
+                  fill
+                  sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 25vw"
+                  loading="lazy"
+                />
+              </div>
               <span className="code">{collection.imageCount} BILDER</span>
               <h2>{collection.title}</h2>
             </Link>
