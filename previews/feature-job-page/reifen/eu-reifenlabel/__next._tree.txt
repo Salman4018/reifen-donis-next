@@ -1,0 +1,2 @@
+:HL["/reifen-donis-next/previews/feature-job-page/_next/static/chunks/2b7ytgvyoadl6.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"reifen","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"eu-reifenlabel","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"shTJvPhEQ6IGEDvV-8eVl"}
