@@ -96,6 +96,27 @@ test.describe('Site navigation', () => {
     await expect(page.getByText(/Reifendruckkontrollsysteme informieren/)).toBeVisible();
   });
 
+  test('services overview links to individual service pages', async ({ page }) => {
+    await page.goto('/leistungen/');
+    await expect(page.locator('.service-icon')).toHaveCount(26);
+    await expect(page.locator('.service-icon svg').first()).toHaveAttribute('aria-hidden', 'true');
+    await expect(page.getByRole('link', { name: /Bremsenservice/ })).toHaveAttribute(
+      'href',
+      '/service/bremsenservice/'
+    );
+    await page.getByRole('link', { name: /Bremsenservice/ }).click();
+    await expect(page).toHaveURL(/\/service\/bremsenservice\/?$/);
+    await expect(page.getByRole('heading', { name: 'Bremsenservice' })).toBeVisible();
+    await expect(page.getByRole('img', { name: 'Bremsenservice' })).toHaveAttribute('src', /\/images\/services\/bremsenservice\.jpg$/);
+
+    await page.goto('/service/professionelle-raederwaesche-2/');
+    await expect(page.getByRole('heading', { name: 'Professionelle Räderwäsche' })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Alle Leistungen/ })).toHaveAttribute(
+      'href',
+      '/unsere-services-rund-um-auto-reifen/'
+    );
+  });
+
   test('fleet page exposes additional selectable images', async ({ page }) => {
     await page.goto('/firmenwagen/');
     await expect(page.getByRole('heading', { name: /Ihr Fuhrpark/ })).toBeVisible();
