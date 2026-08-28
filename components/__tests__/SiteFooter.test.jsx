@@ -9,7 +9,7 @@ describe('SiteFooter', () => {
     expect(screen.getByRole('link', { name: 'Startseite' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Galerie' })).toHaveAttribute('href', '/bilder');
     expect(screen.getByRole('link', { name: 'Leistungen' })).toHaveAttribute('href', '/unsere-services-rund-um-auto-reifen');
-    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/über-uns');
+    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/ueber-uns');
     expect(screen.getByRole('link', { name: 'Kontakt' })).toHaveAttribute('href', '/kontakt');
   });
 

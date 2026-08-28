@@ -27,7 +27,7 @@ test.describe('Site navigation', () => {
     await page.goto('/');
     await openMobileMenuIfNeeded();
     await nav.getByRole('link', { name: 'Über uns' }).click();
-    await expect(page).toHaveURL(/\/%C3%BCber-uns\/?$/);
+     await expect(page).toHaveURL(/\/ueber-uns\/?$/);
 
     await page.goto('/');
     await openMobileMenuIfNeeded();
@@ -118,6 +118,19 @@ test.describe('Site navigation', () => {
       'href',
       /^https:\/\/www\.google\.com\/search\?/
     );
+  });
+
+  test('jobs page explains when no vacancies are available', async ({ page }) => {
+    await page.goto('/stellenangebote/');
+    await expect(page.getByRole('heading', { name: /Gemeinsam anpacken/ })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Derzeit keine offenen Stellen' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Kontaktseite öffnen' })).toHaveAttribute('href', '/kontakt/');
+  });
+
+  test('footer links to the jobs page', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('footer').getByRole('link', { name: 'Stellenangebote' }).click();
+    await expect(page).toHaveURL(/\/stellenangebote\/?$/);
   });
 
   test('gallery images use local asset paths', async ({ page }) => {
