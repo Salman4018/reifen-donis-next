@@ -58,11 +58,17 @@ export default function HomePage() {
           <div className="badge-wheel" aria-hidden="true">
             <svg viewBox="0 0 200 200">
               <defs>
-                <path id="ring" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
+                  <path id="ring" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0" />
               </defs>
-              <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(247,246,243,.15)" strokeWidth="1" />
-              <circle cx="100" cy="100" r="78" fill="none" stroke="#F5B324" strokeWidth="1.5" />
-              <text fontFamily="IBM Plex Mono, monospace" fontSize="9.5" letterSpacing="3" fill="#F7F6F3">
+              <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(247,246,243,.25)" strokeWidth="1.5" />
+              <circle cx="100" cy="100" r="78" fill="none" stroke="#F5B324" strokeWidth="2.5" />
+              <text
+                fontFamily="IBM Plex Mono, monospace"
+                fontSize="12"
+                fontWeight="700"
+                letterSpacing="3"
+                fill="#F7F6F3"
+              >
                 <textPath href="#ring" startOffset="0%">
                   REIFEN DONIS • SOLINGEN • FAHRWERK • REIFEN • KFZ ·
                 </textPath>

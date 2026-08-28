@@ -25,7 +25,7 @@ describe('Tire pages', () => {
     render(await TireCategoryPage({ params: Promise.resolve({ slug: 'rdks' }) }));
 
     expect(screen.getByRole('heading', { name: 'RDKS' })).toBeInTheDocument();
-    expect(screen.getByText(/Reifendruckkontrollsysteme informieren/)).toBeInTheDocument();
+    expect(screen.getByText(/Reifendruckkontrollsysteme – kurz RDKS/)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Alle Reifen/ })).toHaveAttribute('href', '/reifen/');
   });
 });

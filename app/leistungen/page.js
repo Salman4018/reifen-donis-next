@@ -1,12 +1,14 @@
 import { TreadDivider, CtaBand } from '../../components/Bits';
 import Link from 'next/link';
+import Image from 'next/image';
 import { SERVICE_DETAILS } from '../../data/services';
 import ServiceIcon from '../../components/ServiceIcon';
+import TireCards from '../../components/TireCards';
 
 const OVERVIEW_ONLY_SERVICES = [
-  ['ZUBEHÖR', 'Alufelgen'],
-  ['ELEKTRIK', 'Batterie'],
-  ['ENTSORGUNG', 'Reifenentsorgung'],
+  ['ZUBEHÖR', 'Alufelgen', '/images/tires/reifen-raeder.jpg', 'Alufelgen und Reifen'],
+  ['ELEKTRIK', 'Batterie', '/images/services/inspektion-bei-reifen-donis.jpg', 'Fahrzeugbatterie im Werkstattservice'],
+  ['ENTSORGUNG', 'Reifenentsorgung', '/images/tires/reifen-raeder.jpg', 'Reifen zur fachgerechten Entsorgung'],
 ];
 
 export const metadata = {
@@ -14,15 +16,6 @@ export const metadata = {
   description:
     'Alle Leistungen von Reifen Donis: Reifenwechsel, Achsvermessung, Inspektion, HU/AU, Bremsenservice, Klimaservice und mehr.',
 };
-
-const TIRE_TYPES = [
-  ['REIFEN', 'Sommerreifen', 'SUMMER'],
-  ['REIFEN', 'Winterreifen', 'WINTER'],
-  ['REIFEN', 'Ganzjahresreifen', 'ALL_SEASON'],
-  ['REIFEN', 'Offroad-Reifen', 'OFFROAD'],
-  ['SICHERHEIT', 'RDKS', 'TPMS'],
-  ['INFO', 'EU-Reifenlabel', 'LABEL'],
-];
 
 export default function LeistungenPage() {
   return (
@@ -53,17 +46,7 @@ export default function LeistungenPage() {
               Bei winterlichen Bedingungen ist eine entsprechende Bereifung sogar gesetzlich vorgeschrieben.
             </p>
           </div>
-          <div className="service-grid">
-            {TIRE_TYPES.map(([code, title, icon]) => (
-              <div className="service-card" key={title}>
-                <span className="code">{code}</span>
-                <div className="service-card-title">
-                  <h4>{title}</h4>
-                  <ServiceIcon category={title} icon={icon} />
-                </div>
-              </div>
-            ))}
-          </div>
+          <TireCards />
         </div>
       </section>
 
@@ -74,8 +57,9 @@ export default function LeistungenPage() {
             <h2>Unsere Leistungen im Überblick</h2>
           </div>
           <div className="service-grid">
-            {SERVICE_DETAILS.map(({ slug, category, title, intro }) => (
+            {SERVICE_DETAILS.map(({ slug, category, title, intro, image, imageAlt }) => (
               <Link className="service-card" href={`/service/${slug}/`} key={slug}>
+                <Image className="service-card-image" src={image} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
                 <span className="code">{category}</span>
                 <div className="service-card-title">
                   <h4>{title}</h4>
@@ -84,8 +68,9 @@ export default function LeistungenPage() {
                 <p style={{ margin: '.6em 0 0', fontSize: '.9rem', color: 'var(--steel)' }}>{intro}</p>
               </Link>
             ))}
-            {OVERVIEW_ONLY_SERVICES.map(([category, title]) => (
+            {OVERVIEW_ONLY_SERVICES.map(([category, title, image, imageAlt]) => (
               <div className="service-card" key={title}>
+                <Image className="service-card-image" src={image} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
                 <span className="code">{category}</span>
                 <div className="service-card-title">
                   <h4>{title}</h4>

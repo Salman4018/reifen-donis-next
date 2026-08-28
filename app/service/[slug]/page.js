@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { CtaBand } from '../../../components/Bits';
 import { SERVICE_DETAILS, getService } from '../../../data/services';
@@ -28,12 +29,13 @@ export default async function ServiceDetailPage({ params }) {
           <p className="eyebrow">{service.category}</p>
           <h1>{service.title}</h1>
           <p className="lead">{service.intro}</p>
-          <img
+          <Image
             className="service-hero-image"
             src={localAsset(service.image)}
             alt={service.imageAlt}
-            width="1200"
-            height="280"
+            width={1200}
+            height={280}
+            sizes="(max-width: 900px) 100vw, 1200px"
           />
         </div>
       </section>

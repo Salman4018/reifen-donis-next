@@ -5,6 +5,10 @@ test.describe('Site navigation', () => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Reifen Donis/);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('besseren Service');
+    const badge = page.locator('.badge-wheel');
+    await expect(badge.locator('circle')).toHaveCount(2);
+    await expect(badge.locator('textPath')).toContainText('REIFEN DONIS');
+    await expect(badge.locator('path#ring')).toHaveAttribute('d', /-85/);
   });
 
   test('main navigation exposes and opens the original public routes', async ({ page }) => {
@@ -87,18 +91,28 @@ test.describe('Site navigation', () => {
   test('tire overview links to every tire category page', async ({ page }) => {
     await page.goto('/reifen/');
     await expect(page.getByRole('heading', { name: 'Das richtige Profil für jede Fahrt' })).toBeVisible();
+    await expect(page.locator('.tire-overview-image')).toHaveAttribute('src', /\/images\/tires\/reifen-raeder\.jpg$/);
     for (const category of ['Sommerreifen', 'Winterreifen', 'Ganzjahresreifen', 'RDKS', 'EU-Reifenlabel', 'Offroad']) {
-      await expect(page.getByRole('link', { name: new RegExp(`^REIFEN ${category} `) })).toBeVisible();
+      await expect(page.getByRole('link', { name: new RegExp(category) })).toBeVisible();
     }
     await page.goto('/reifen/rdks/');
     await expect(page).toHaveURL(/\/reifen\/rdks\/?$/);
     await expect(page.getByRole('heading', { name: 'RDKS', exact: true })).toBeVisible();
-    await expect(page.getByText(/Reifendruckkontrollsysteme informieren/)).toBeVisible();
+    await expect(page.getByText(/Reifendruckkontrollsysteme – kurz RDKS/)).toBeVisible();
+    await expect(page.locator('.service-hero-image')).toHaveAttribute('src', /\/images\/tires\/rdks\.jpg$/);
+
+    await page.goto('/reifen/eu-reifenlabel/');
+    await expect(page.getByRole('img', { name: 'Das vollständige EU-Reifenlabel.' })).toHaveAttribute(
+      'src',
+      /\/images\/tires\/eu-reifenlabel-detail\.jpg$/
+    );
   });
 
   test('services overview links to individual service pages', async ({ page }) => {
     await page.goto('/leistungen/');
     await expect(page.locator('.service-icon')).toHaveCount(26);
+    await expect(page.locator('.service-card-image')).toHaveCount(20);
+    await expect(page.locator('.service-card-image').first()).toHaveAttribute('src', /\/images\/services\/achsvermessung-3\.jpg$/);
     await expect(page.locator('.service-icon svg').first()).toHaveAttribute('aria-hidden', 'true');
     await expect(page.getByRole('link', { name: /Bremsenservice/ })).toHaveAttribute(
       'href',
