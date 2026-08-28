@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { SERVICE_DETAILS } from '../../data/services';
 import ServiceIcon from '../../components/ServiceIcon';
 import TireCards from '../../components/TireCards';
+import { localAsset } from '../../lib/assets';
 
 const OVERVIEW_ONLY_SERVICES = [
   ['ZUBEHÖR', 'Alufelgen', '/images/tires/reifen-raeder.jpg', 'Alufelgen und Reifen'],
@@ -59,7 +60,7 @@ export default function LeistungenPage() {
           <div className="service-grid">
             {SERVICE_DETAILS.map(({ slug, category, title, intro, image, imageAlt }) => (
               <Link className="service-card" href={`/service/${slug}/`} key={slug}>
-                <Image className="service-card-image" src={image} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
+                <Image className="service-card-image" src={localAsset(image)} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
                 <span className="code">{category}</span>
                 <div className="service-card-title">
                   <h4>{title}</h4>
@@ -70,7 +71,7 @@ export default function LeistungenPage() {
             ))}
             {OVERVIEW_ONLY_SERVICES.map(([category, title, image, imageAlt]) => (
               <div className="service-card" key={title}>
-                <Image className="service-card-image" src={image} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
+                <Image className="service-card-image" src={localAsset(image)} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
                 <span className="code">{category}</span>
                 <div className="service-card-title">
                   <h4>{title}</h4>
