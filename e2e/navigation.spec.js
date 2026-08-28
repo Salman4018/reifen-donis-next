@@ -128,13 +128,13 @@ test.describe('Site navigation', () => {
   test('gallery pagination shows different collections', async ({ page }) => {
     await page.goto('/bilder/');
     await page.getByRole('link', { name: '2', exact: true }).click();
-    await expect(page).toHaveURL(/\/bilder\/\?page=1$/);
-
-    await page.getByRole('link', { name: '3', exact: true }).click();
     await expect(page).toHaveURL(/\/bilder\/\?page=2$/);
 
-    await page.getByRole('link', { name: '4', exact: true }).click();
+    await page.getByRole('link', { name: '3', exact: true }).click();
     await expect(page).toHaveURL(/\/bilder\/\?page=3$/);
+
+    await page.getByRole('link', { name: '4', exact: true }).click();
+    await expect(page).toHaveURL(/\/bilder\/\?page=4$/);
     await expect(page.getByRole('heading', { name: "Opel Kapitän '39 4-Türer (Bj.1939)" })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Lamborghini Diabolo SE 30 (1993-1995) Spezial Edition 150 Stück' })).not.toBeVisible();
     await expect(page.getByRole('link', { name: '4', exact: true })).toHaveAttribute('aria-current', 'page');
