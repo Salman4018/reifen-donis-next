@@ -17,6 +17,11 @@
 - Target one browser test file with `npx playwright test e2e/navigation.spec.js`; use `npm run e2e:ui` for interactive debugging.
 - Run `npm run build` to produce the static site in `out/`; `npm start` is not applicable while `output: 'export'` remains enabled.
 
+## Verification Rule
+
+- Always fix lint and build warnings introduced by a change; do not leave new warnings as accepted output.
+- Treat filesystem errors such as Windows/OneDrive `EPERM` or `EBUSY` locks as verification failures to resolve or report separately, not as warnings.
+
 ## Deployment
 
 - `.github/workflows/deploy.yml` deploys to GitHub Pages on pushes to `main` or manual dispatch, using Node 20 and `npm ci`.

@@ -1,42 +1,22 @@
 import { TreadDivider, CtaBand } from '../../components/Bits';
+import Link from 'next/link';
+import Image from 'next/image';
+import { SERVICE_DETAILS } from '../../data/services';
+import ServiceIcon from '../../components/ServiceIcon';
+import TireCards from '../../components/TireCards';
+import { localAsset } from '../../lib/assets';
+
+const OVERVIEW_ONLY_SERVICES = [
+  ['ZUBEHÖR', 'Alufelgen', '/images/tires/reifen-raeder.jpg', 'Alufelgen und Reifen'],
+  ['ELEKTRIK', 'Batterie', '/images/services/inspektion-bei-reifen-donis.jpg', 'Fahrzeugbatterie im Werkstattservice'],
+  ['ENTSORGUNG', 'Reifenentsorgung', '/images/tires/reifen-raeder.jpg', 'Reifen zur fachgerechten Entsorgung'],
+];
 
 export const metadata = {
   title: 'Leistungen',
   description:
     'Alle Leistungen von Reifen Donis: Reifenwechsel, Achsvermessung, Inspektion, HU/AU, Bremsenservice, Klimaservice und mehr.',
 };
-
-const TIRE_TYPES = [
-  ['REIFEN', 'Sommerreifen'],
-  ['REIFEN', 'Winterreifen'],
-  ['REIFEN', 'Ganzjahresreifen'],
-  ['REIFEN', 'Offroad-Reifen'],
-  ['SICHERHEIT', 'RDKS'],
-  ['INFO', 'EU-Reifenlabel'],
-];
-
-const SERVICES = [
-  ['FAHRWERK', 'Achsvermessung', 'Grundlage für optimale Fahrwerkseinstellung — wichtig für Fahrsicherheit, Reifenverschleiß und Spritverbrauch.'],
-  ['ZUBEHÖR', 'Alufelgen', null],
-  ['ABGAS', 'Auspuffservice', 'Leitet Abgase sicher, umweltfreundlich und geräuscharm ab und schützt Motor und Umwelt.'],
-  ['ELEKTRIK', 'Batterie', null],
-  ['SICHERHEIT', 'Bremsenservice', 'Regelmäßige Prüfung der Bremsanlage beugt Schäden und teuren Reparaturen vor.'],
-  ['REIFEN', 'Einlagerung', null],
-  ['PRÜFUNG', 'HU / AU', 'Gesetzliche Hauptuntersuchung inkl. Abgasuntersuchung — alle zwei Jahre, für Taxen/Busse jährlich.'],
-  ['WARTUNG', 'Inspektion', 'Regelmäßige Kontrolle für Sicherheit, Fahrkomfort und zur Vermeidung teurer Folgeschäden.'],
-  ['KAROSSERIE', 'Karosseriearbeiten', 'Reparatur von Karosserieschäden, Kunststoff-Stoßstangen und Rostschäden.'],
-  ['KOMFORT', 'Klimaservice', null],
-  ['WARTUNG', 'Ölwechsel', null],
-  ['PFLEGE', 'Professionelle Räderwäsche', 'Gründliche Reifen- und Felgenreinigung, empfohlen zu Saisonbeginn vor der Einlagerung.'],
-  ['PFLEGE', 'Radnabenreinigung', 'Zentraler Kontaktpunkt zwischen Felge und Fahrzeug — Schutz vor Korrosion.'],
-  ['REIFEN', 'Reifen- und Radwechsel', null],
-  ['ENTSORGUNG', 'Reifenentsorgung', null],
-  ['SAISON', 'Saisoncheck', null],
-  ['GLAS', 'Scheibenreparatur', null],
-  ['FAHRWERK', 'Stoßdämpfer', 'Sicherheitsrelevantes Bauteil — wandelt Schwingungsenergie beim Fahren in Wärme um.'],
-  ['PRÜFUNG', 'UVV-Prüfung', 'Prüfung gemäß Unfallverhütungsvorschrift DGUV 70.'],
-  ['REIFEN', 'Wuchten', 'Auswuchten des kompletten Rads für optimales Fahrverhalten und maximale Sicherheit.'],
-];
 
 export default function LeistungenPage() {
   return (
@@ -67,14 +47,7 @@ export default function LeistungenPage() {
               Bei winterlichen Bedingungen ist eine entsprechende Bereifung sogar gesetzlich vorgeschrieben.
             </p>
           </div>
-          <div className="service-grid">
-            {TIRE_TYPES.map(([code, title]) => (
-              <div className="service-card" key={title}>
-                <span className="code">{code}</span>
-                <h4>{title}</h4>
-              </div>
-            ))}
-          </div>
+          <TireCards />
         </div>
       </section>
 
@@ -85,13 +58,25 @@ export default function LeistungenPage() {
             <h2>Unsere Leistungen im Überblick</h2>
           </div>
           <div className="service-grid">
-            {SERVICES.map(([code, title, text]) => (
+            {SERVICE_DETAILS.map(({ slug, category, title, intro, image, imageAlt }) => (
+              <Link className="service-card" href={`/service/${slug}/`} key={slug}>
+                <Image className="service-card-image" src={localAsset(image)} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
+                <span className="code">{category}</span>
+                <div className="service-card-title">
+                  <h4>{title}</h4>
+                  <ServiceIcon category={category} />
+                </div>
+                <p style={{ margin: '.6em 0 0', fontSize: '.9rem', color: 'var(--steel)' }}>{intro}</p>
+              </Link>
+            ))}
+            {OVERVIEW_ONLY_SERVICES.map(([category, title, image, imageAlt]) => (
               <div className="service-card" key={title}>
-                <span className="code">{code}</span>
-                <h4>{title}</h4>
-                {text && (
-                  <p style={{ margin: '.6em 0 0', fontSize: '.9rem', color: 'var(--steel)' }}>{text}</p>
-                )}
+                <Image className="service-card-image" src={localAsset(image)} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
+                <span className="code">{category}</span>
+                <div className="service-card-title">
+                  <h4>{title}</h4>
+                  <ServiceIcon category={category} />
+                </div>
               </div>
             ))}
           </div>
