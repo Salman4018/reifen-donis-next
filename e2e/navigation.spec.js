@@ -109,6 +109,17 @@ test.describe('Site navigation', () => {
     await expect(page.getByText('Keine kleinteiligen Einzelverträge')).toBeVisible();
   });
 
+  test('reviews page shows source-linked rating and count', async ({ page }) => {
+    await page.goto('/ihre-meinungen/');
+    await expect(page.getByRole('heading', { name: 'Ihre Meinungen' })).toBeVisible();
+    await expect(page.getByText('4.7', { exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: '90 Berichte' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Bewertungen bei Google ansehen' })).toHaveAttribute(
+      'href',
+      /^https:\/\/www\.google\.com\/search\?/
+    );
+  });
+
   test('gallery images use local asset paths', async ({ page }) => {
     await page.goto('/bilder/');
     await expect(page.locator('img').first()).toHaveAttribute('src', /\/images\/gallery\//);

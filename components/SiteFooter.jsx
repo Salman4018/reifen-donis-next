@@ -19,6 +19,7 @@ export default function SiteFooter() {
               <li><Link href="/reifen/">Reifen</Link></li>
               <li><Link href="/unsere-services-rund-um-auto-reifen/">Leistungen</Link></li>
               <li><Link href="/firmenwagen/">Firmenwagen</Link></li>
+              <li><Link href="/ihre-meinungen/">Ihre Meinungen</Link></li>
               <li><Link href="/über-uns/">Über uns</Link></li>
               <li><Link href="/kontakt/">Kontakt</Link></li>
             </ul>

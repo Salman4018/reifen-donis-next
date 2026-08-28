@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { TreadDivider, CtaBand, Partners } from '../components/Bits';
+import { REVIEWS } from '../data/reviews';
 
 const QUICK_LINKS = [
   { tag: 'Werkstatt', title: 'Leistungen', href: '/leistungen/' },
@@ -92,8 +93,8 @@ export default function HomePage() {
             <span>Leistungen im Angebot</span>
           </div>
           <div>
-            <b className="mono">4.7 / 5</b>
-            <span>Google-Bewertung</span>
+            <b className="mono">{REVIEWS.rating} / {REVIEWS.scale}</b>
+            <span><Link href="/ihre-meinungen/">Google-Bewertung</Link></span>
           </div>
         </div>
       </section>
