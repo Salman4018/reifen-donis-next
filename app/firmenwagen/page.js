@@ -1,4 +1,5 @@
 import { CtaBand, TreadDivider } from '../../components/Bits';
+import Reveal from '../../components/Reveal';
 import FleetGallery from '../../components/FleetGallery';
 import { FLEET_IMAGES } from '../../data/fleet';
 
@@ -100,14 +101,14 @@ export default function FirmenwagenPage() {
       </section>
       <section className="bg-dim">
         <div className="wrap">
-          <div className="section-head">
+          <Reveal className="section-head">
             <p className="eyebrow">Unser Kunden-Netzwerk</p>
             <h2>Betreut über die 4Fleet Group</h2>
             <p className="lead">Wir betreuen Firmenfahrzeuge namhafter Flottenmanagement- und Leasingpartner.</p>
-          </div>
-          <div className="fleet-customers" aria-label="Flottenmanagement- und Leasingpartner">
+          </Reveal>
+          <Reveal as="div" stagger className="fleet-customers" aria-label="Flottenmanagement- und Leasingpartner">
             {FLEET_CUSTOMERS.map((customer) => <span className="fleet-customer" key={customer}>{customer}</span>)}
-          </div>
+          </Reveal>
           <p className="fleet-note">Die genannten Unternehmen sind Netzwerkpartner der 4Fleet Group. Markenlogos werden nur mit entsprechender Freigabe verwendet.</p>
         </div>
       </section>

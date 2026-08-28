@@ -1,6 +1,14 @@
+import { Inter } from 'next/font/google';
 import './globals.css';
 import SiteHeader from '../components/SiteHeader';
 import SiteFooter from '../components/SiteFooter';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sans',
+  display: 'swap',
+});
 
 export const metadata = {
   title: {
@@ -18,7 +26,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="de">
+    <html lang="de" className={inter.variable}>
       <body>
         <a className="skip-link" href="#main-content">
           Direkt zum Inhalt

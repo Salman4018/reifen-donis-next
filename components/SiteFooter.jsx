@@ -6,7 +6,9 @@ export default function SiteFooter() {
       <div className="wrap">
         <div className="footer-grid">
           <div>
-            <h4>Reifen Donis</h4>
+            <span className="footer-logo">
+              REIFEN <span>DONIS</span>
+            </span>
             <p style={{ maxWidth: '32ch', color: 'var(--steel-light)', fontSize: '.92rem' }}>
               Donis Kfz-Werkstatt &amp; Reifendienst — Ihr Ansprechpartner rund ums Auto in Solingen seit 1988.
             </p>

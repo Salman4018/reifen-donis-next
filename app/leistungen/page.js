@@ -5,6 +5,7 @@ import { SERVICE_DETAILS } from '../../data/services';
 import ServiceIcon from '../../components/ServiceIcon';
 import TireCards from '../../components/TireCards';
 import { localAsset } from '../../lib/assets';
+import Reveal from '../../components/Reveal';
 
 const OVERVIEW_ONLY_SERVICES = [
   ['ZUBEHÖR', 'Alufelgen', '/images/tires/reifen-raeder.jpg', 'Alufelgen und Reifen'],
@@ -39,25 +40,25 @@ export default function LeistungenPage() {
 
       <section id="reifen">
         <div className="wrap">
-          <div className="section-head">
+          <Reveal className="section-head">
             <p className="eyebrow">Reifen</p>
             <h2>Sommer, Winter, Ganzjahr — für jede Saison</h2>
             <p>
               Der Wechsel des Rads bzw. Reifens erfolgt saisonal, um die Bereifung an die Witterung anzupassen.
               Bei winterlichen Bedingungen ist eine entsprechende Bereifung sogar gesetzlich vorgeschrieben.
             </p>
-          </div>
+          </Reveal>
           <TireCards />
         </div>
       </section>
 
       <section className="bg-dim">
         <div className="wrap">
-          <div className="section-head">
+          <Reveal className="section-head">
             <p className="eyebrow">Werkstatt &amp; Service</p>
             <h2>Unsere Leistungen im Überblick</h2>
-          </div>
-          <div className="service-grid">
+          </Reveal>
+          <Reveal as="div" className="service-grid">
             {SERVICE_DETAILS.map(({ slug, category, title, intro, image, imageAlt }) => (
               <Link className="service-card" href={`/service/${slug}/`} key={slug}>
                 <Image className="service-card-image" src={localAsset(image)} alt={imageAlt} width={600} height={150} sizes="(max-width: 900px) 50vw, 25vw" />
@@ -79,7 +80,7 @@ export default function LeistungenPage() {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 

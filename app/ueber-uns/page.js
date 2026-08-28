@@ -1,4 +1,5 @@
 import { TreadDivider, CtaBand, Partners } from '../../components/Bits';
+import Reveal from '../../components/Reveal';
 
 export const metadata = {
   title: 'Über uns',
@@ -79,7 +80,7 @@ export default function UeberUnsPage() {
               Maschinen und gut ausgebildete Mitarbeiter sind der Garant für unsere Dienstleistung.
             </p>
           </div>
-          <div className="timeline">
+          <Reveal as="div" className="timeline">
             {TIMELINE.map((item) => (
               <div className="item" key={item.year}>
                 <span className="year">{item.year}</span>
@@ -87,28 +88,28 @@ export default function UeberUnsPage() {
                 <p>{item.text}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="bg-dim">
         <div className="wrap">
-          <div className="section-head">
+          <Reveal className="section-head">
             <p className="eyebrow">Ihre Ansprechpartner</p>
             <h2>Rund ums Auto — egal ob Kauf, Montage oder Reparatur</h2>
             <p>
               Ob Reifenkauf, Reifenmontage, Einlagerung, Autoreparaturen, Inspektion, Klimaservice oder
               Saisoncheck: diese Herren sind Ihre Ansprechpartner bei Reifen Donis.
             </p>
-          </div>
-          <div className="team-grid">
+          </Reveal>
+          <Reveal as="div" stagger className="team-grid">
             {TEAM.map((member) => (
               <div className="team-card" key={member.name}>
                 <span className="role">{member.role}</span>
                 <h3>{member.name}</h3>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 

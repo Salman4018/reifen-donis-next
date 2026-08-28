@@ -1,5 +1,6 @@
 import { TreadDivider, CtaBand } from '../../components/Bits';
 import ContactForm from '../../components/ContactForm';
+import Reveal from '../../components/Reveal';
 
 export const metadata = {
   title: 'Kontakt',
@@ -44,7 +45,8 @@ export default function KontaktPage() {
                 src="https://www.google.com/maps?q=Merscheider+Stra%C3%9Fe+326,+42699+Solingen&output=embed"
               ></iframe>
             </div>
-            <div className="card-row card-row-2" style={{ marginTop: 24 }}>
+            <div style={{ marginTop: 24 }}>
+            <Reveal as="div" stagger className="card-row card-row-2">
               <div className="info-card">
                 <h3>
                   <span className="dot" aria-hidden="true"></span>Adresse
@@ -84,6 +86,7 @@ export default function KontaktPage() {
                   </tbody>
                 </table>
               </div>
+            </Reveal>
             </div>
           </div>
         </div>

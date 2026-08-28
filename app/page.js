@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { TreadDivider, CtaBand, Partners } from '../components/Bits';
+import Reveal from '../components/Reveal';
 import { REVIEWS } from '../data/reviews';
+import { localAsset } from '../lib/assets';
 
 const QUICK_LINKS = [
   { tag: 'Werkstatt', title: 'Leistungen', href: '/leistungen/' },
@@ -32,9 +35,18 @@ export default function HomePage() {
   return (
     <>
       <section className="hero">
+        <div className="hero-media" aria-hidden="true">
+          <Image
+            src={localAsset('/images/services/achsvermessung-3.jpg')}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
         <div className="tread" aria-hidden="true"></div>
         <div className="wrap hero-inner">
-          <div>
+          <div className="fade-up">
             <p className="eyebrow">Seit 1988 in Solingen</p>
             <h1>
               Ihr Partner mit dem <em>besseren Service</em> rund ums Auto
@@ -55,19 +67,19 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="badge-wheel" aria-hidden="true">
+          <div className="badge-wheel fade-up fade-up-delay-1" aria-hidden="true">
             <svg viewBox="0 0 200 200">
               <defs>
                   <path id="ring" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0" />
               </defs>
-              <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(247,246,243,.25)" strokeWidth="1.5" />
-              <circle cx="100" cy="100" r="78" fill="none" stroke="#F5B324" strokeWidth="2.5" />
+              <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(247,249,252,.25)" strokeWidth="1.5" />
+              <circle cx="100" cy="100" r="78" fill="none" stroke="#FF4200" strokeWidth="2.5" />
               <text
-                fontFamily="IBM Plex Mono, monospace"
+                fontFamily="var(--font-sans), Inter, sans-serif"
                 fontSize="12"
                 fontWeight="700"
                 letterSpacing="3"
-                fill="#F7F6F3"
+                fill="#FFFFFF"
               >
                 <textPath href="#ring" startOffset="0%">
                   REIFEN DONIS • SOLINGEN • FAHRWERK • REIFEN • KFZ ·
@@ -109,39 +121,40 @@ export default function HomePage() {
 
       <section>
         <div className="wrap">
-          <div className="section-head">
+          <Reveal className="section-head">
             <p className="eyebrow">Schnellzugriff</p>
             <h2>Wonach suchen Sie?</h2>
-          </div>
-          <div className="tile-grid">
+          </Reveal>
+          <Reveal as="div" stagger className="tile-grid">
             {QUICK_LINKS.map((tile) => (
               <a className="tile" href={tile.href} key={tile.title}>
                 <span className="tile-tag">{tile.tag}</span>
                 <h3>{tile.title}</h3>
+                <span className="tile-arrow" aria-hidden="true">→</span>
               </a>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="bg-dim" id="reifen">
         <div className="wrap">
-          <div className="section-head">
+          <Reveal className="section-head">
             <p className="eyebrow">Unsere Leistungen</p>
             <h2>Alles, was Ihr Auto braucht — unter einem Dach</h2>
             <p>
               Vom saisonalen Reifenwechsel bis zur kompletten Fahrzeuginspektion: unser Fachpersonal ist laufend
               geschult, auch für RDKS- und Runflatreifen sowie E- und Hybridfahrzeuge.
             </p>
-          </div>
-          <div className="service-grid">
+          </Reveal>
+          <Reveal as="div" stagger className="service-grid">
             {SERVICE_PREVIEW.map(([code, title]) => (
               <div className="service-card" key={title}>
                 <span className="code">{code}</span>
                 <h4>{title}</h4>
               </div>
             ))}
-          </div>
+          </Reveal>
           <p style={{ marginTop: 28 }}>
             <Link className="btn btn-outline" href="/leistungen/">
               Alle 20 Leistungen im Detail
@@ -151,7 +164,7 @@ export default function HomePage() {
       </section>
 
       <section>
-        <div className="wrap card-row">
+        <Reveal as="div" stagger className="wrap card-row">
           <div className="info-card">
             <h3>
               <span className="dot" aria-hidden="true"></span>Adresse
@@ -196,7 +209,7 @@ export default function HomePage() {
               </tbody>
             </table>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <Partners />

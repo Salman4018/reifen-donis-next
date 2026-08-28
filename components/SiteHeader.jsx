@@ -45,6 +45,12 @@ export default function SiteHeader() {
             <span aria-hidden="true">☎</span>
             <span className="full">0212 / 880239-0</span>
           </a>
+          <a
+            className="btn btn-amber btn-sm header-book"
+            href="https://reifendonis.myneonis.de/mitarbeiter/public/booking/booking.html"
+          >
+            Termin buchen
+          </a>
           <button
             className="nav-toggle"
             aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
@@ -56,6 +62,11 @@ export default function SiteHeader() {
           </button>
         </div>
       </div>
+      <div
+        className={`nav-backdrop${open ? ' open' : ''}`}
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+      ></div>
     </header>
   );
 }

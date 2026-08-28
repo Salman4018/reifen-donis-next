@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CtaBand, Partners } from '../../components/Bits';
 import { REVIEWS } from '../../data/reviews';
+import Reveal from '../../components/Reveal';
 
 export const metadata = {
   title: 'Ihre Meinungen',
@@ -19,7 +20,7 @@ export default function ReviewsPage() {
         </div>
       </section>
       <section>
-        <div className="wrap reviews-summary">
+        <Reveal as="div" className="wrap reviews-summary">
           <div className="review-score" aria-label={`${REVIEWS.rating} von ${REVIEWS.scale} Sternen aus ${REVIEWS.count} Berichten`}>
             <span className="review-score-value">{REVIEWS.rating}</span>
             <span className="review-score-scale">/ {REVIEWS.scale}</span>
@@ -43,10 +44,10 @@ export default function ReviewsPage() {
             </div>
             <p className="review-source">Quelle: Google, geprüft am {REVIEWS.checkedAt}</p>
           </div>
-        </div>
+        </Reveal>
       </section>
       <section className="bg-dim">
-        <div className="wrap card-row card-row-2">
+        <Reveal as="div" stagger className="wrap card-row card-row-2">
           <div className="info-card">
             <h3><span className="dot" aria-hidden="true"></span>Persönlicher Service</h3>
             <p>Wir nehmen uns Zeit für eine verständliche Beratung und eine passende Lösung für Ihr Fahrzeug.</p>
@@ -55,7 +56,7 @@ export default function ReviewsPage() {
             <h3><span className="dot" aria-hidden="true"></span>Rund ums Auto</h3>
             <p>Von Reifen und Rädern bis Werkstattservice: Unser Team begleitet Sie zuverlässig durch alle Jahreszeiten.</p>
           </div>
-        </div>
+        </Reveal>
       </section>
       <Partners />
       <CtaBand title="Sie möchten unseren Service kennenlernen?" ctaLabel="Kontakt aufnehmen" ctaHref="/kontakt/" />
