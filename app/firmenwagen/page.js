@@ -2,6 +2,16 @@ import { CtaBand, TreadDivider } from '../../components/Bits';
 import FleetGallery from '../../components/FleetGallery';
 import { FLEET_IMAGES } from '../../data/fleet';
 
+const FLEET_CUSTOMERS = [
+  'Alphabet',
+  'Arval',
+  'Ayvens',
+  'DKV',
+  'Interleasing',
+  'Impuls Leasing',
+  'Raiffeisen Leasing Fuhrparkmanagement',
+];
+
 export const metadata = {
   title: 'Firmenwagen',
   description: 'Reifenservice und Fuhrparkbetreuung für Firmenkunden in Solingen.',
@@ -30,8 +40,9 @@ export default function FirmenwagenPage() {
               in erfahrenen Händen.
             </p>
             <p>
-              Wir stimmen Reifenwechsel-Termine ab, beraten bei der Wahl und Montage neuer Reifen und helfen dabei,
-              Ausfallzeiten sowie unnötige Verwaltungskosten zu reduzieren.
+              Ob Handwerksbetrieb, Pflegedienst, Catering-Service oder Außendienst: Wir stimmen Reifenwechsel-Termine
+              ab, beraten bei der Wahl und Montage neuer Reifen und helfen dabei, Ausfallzeiten sowie unnötige
+              Verwaltungskosten zu reduzieren.
             </p>
           </div>
           <FleetGallery images={FLEET_IMAGES} />
@@ -46,8 +57,10 @@ export default function FirmenwagenPage() {
               <li>Professionelles Reifenmanagement</li>
               <li>Reifen- und Radwechsel</li>
               <li>Reifenmontage und Reifenreparatur</li>
-              <li>Einlagerung und professionelles Wuchten</li>
+              <li>Einlagerung</li>
+              <li>Professionelles Wuchten</li>
               <li>Professionelle Räderwäsche</li>
+              <li>Und weitere Leistungen nach Bedarf</li>
             </ul>
           </div>
           <div>
@@ -61,6 +74,41 @@ export default function FirmenwagenPage() {
               Geschäftskunden mit passenden Lösungen für ihre individuelle Flotte.
             </p>
           </div>
+        </div>
+      </section>
+      <section>
+        <div className="wrap split">
+          <div>
+            <p className="eyebrow">4Fleet Group</p>
+            <h2>Einfacher Ablauf, klare Kosten</h2>
+            <p>
+              Als autorisierter Reifenpartner der 4Fleet Group betreuen wir Firmenfahrzeuge im vereinbarten
+              Leistungsumfang. Sie können die Leistungen rund um Räder und Reifen unkompliziert in Anspruch nehmen;
+              die Abrechnung erfolgt zentral über die 4Fleet Group und Ihre Firmenzentrale.
+            </p>
+          </div>
+          <div className="fleet-benefits">
+            <h3>Ihre Vorteile als Flottenkunde</h3>
+            <ul>
+              <li>Keine kleinteiligen Einzelverträge</li>
+              <li>Weniger Mikromanagement für Ihr Unternehmen</li>
+              <li>Kostensenkung durch Zentralfaktura</li>
+              <li>Transparente Reports für mehr Effizienz und Qualität</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="bg-dim">
+        <div className="wrap">
+          <div className="section-head">
+            <p className="eyebrow">Unser Kunden-Netzwerk</p>
+            <h2>Betreut über die 4Fleet Group</h2>
+            <p className="lead">Wir betreuen Firmenfahrzeuge namhafter Flottenmanagement- und Leasingpartner.</p>
+          </div>
+          <div className="fleet-customers" aria-label="Flottenmanagement- und Leasingpartner">
+            {FLEET_CUSTOMERS.map((customer) => <span className="fleet-customer" key={customer}>{customer}</span>)}
+          </div>
+          <p className="fleet-note">Die genannten Unternehmen sind Netzwerkpartner der 4Fleet Group. Markenlogos werden nur mit entsprechender Freigabe verwendet.</p>
         </div>
       </section>
       <CtaBand title="Sie suchen einen Partner für Ihren Fuhrpark?" ctaLabel="Kontakt aufnehmen" ctaHref="/kontakt/" />

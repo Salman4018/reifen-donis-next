@@ -104,6 +104,9 @@ test.describe('Site navigation', () => {
     await expect(gallery.getByRole('button')).toHaveCount(4);
     await gallery.getByRole('button', { name: 'Lieferwagen anzeigen' }).click();
     await expect(gallery.getByRole('img', { name: 'Lieferwagen eines Flottenkunden' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Einfacher Ablauf, klare Kosten' })).toBeVisible();
+    await expect(page.getByText('Alphabet', { exact: true })).toBeVisible();
+    await expect(page.getByText('Keine kleinteiligen Einzelverträge')).toBeVisible();
   });
 
   test('gallery images use local asset paths', async ({ page }) => {
